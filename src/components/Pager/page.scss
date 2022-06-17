@@ -1,0 +1,82 @@
+.custom-page {
+    width: fit-content;
+    .selected-act{
+        color: #00ff00;
+        border-color: #00ff00;
+    }
+    .change-page{
+        font-size: 16px;
+        color: #000;
+        height: 32px;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+        line-height: 32px;
+        min-width: 32px;
+        text-align: center;
+        cursor: pointer;
+        &:hover {
+            color: #00ff00;
+            border-color: #00ff00;
+        }
+    }
+    .click-none {
+        opacity: 0.3;
+        pointer-events: none;
+    }
+    .pre-page {
+        margin-right: 8px;
+    }
+    .last-page {
+        margin-left: 8px;
+    }
+    ul {
+        margin: 0;
+    }
+    li{
+        list-style: none;
+        height: 32px;
+        line-height: 32px;
+        min-width: 32px;
+        text-align: center;
+        margin-right: 8px;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+        outline: 0;
+        cursor: pointer;
+        &:hover {
+            color: #00ff00;
+            border-color: #00ff00;
+        }
+    }
+    .total {
+        margin-right: 15px;
+        .total-num {
+            margin: 0 8px;
+        }
+    }
+    .jump-page {
+        margin-left: 15px;
+        input {
+            -moz-appearance:textfield;
+            height: 32px;
+            width: 50px;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            outline:none;
+            margin: 0 10px;
+            text-indent: 10px;
+            &:focus {
+                border-color: #00ff00;
+            }
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+    }
+}
