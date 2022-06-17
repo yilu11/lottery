@@ -10,7 +10,7 @@ const ETHERSCAN_PREFIXES: { [chainId: number]: string } = {
   [SupportedChainId.OPTIMISTIC_KOVAN]: 'https://kovan-optimistic.etherscan.io',
   [SupportedChainId.POLYGON_MUMBAI]: 'https://mumbai.polygonscan.com',
   [SupportedChainId.POLYGON]: 'https://polygonscan.com',
-  [SupportedChainId.TESTNET]: 'http://192.168.3.187:7545',
+  [SupportedChainId.TESTNET]: 'http://106.75.138.109:8545',
 }
 
 export enum ExplorerDataType {

@@ -31,7 +31,7 @@ function getRpcUrls(chainId: SupportedChainId): [string] {
     case SupportedChainId.POLYGON_MUMBAI:
       return ['https://rpc-endpoints.superfluid.dev/mumbai']
       case SupportedChainId.TESTNET:
-        return ['http:/127.0.0.1:8545/']
+        return ['http:/106.75.138.109:8545/']
     default:
   }
   // Our API-keyed URLs will fail security checks when used with external wallets.
