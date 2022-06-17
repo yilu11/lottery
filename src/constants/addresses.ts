@@ -5,7 +5,7 @@ import { constructSameAddressMap } from '../utils/constructSameAddressMap'
 import { SupportedChainId } from './chains'
 
 type AddressMap = { [chainId: number]: string }
-export const LOTTERY_FACTORY_ADDRESS: AddressMap = constructSameAddressMap('0x11Da84F961A8d76b4860cA9DeB34900d394902ce',[
+export const LOTTERY_FACTORY_ADDRESS: AddressMap = constructSameAddressMap('0x336fe8C87C36D577e519c2FF700f370E7D30ED8e',[
   SupportedChainId.TESTNET
 ])
 export const LOTTERY_ADDRESS: AddressMap = constructSameAddressMap('0x0702F0F9F71CDEFDCF0FFd119C762eDA6D9f19A2',[
