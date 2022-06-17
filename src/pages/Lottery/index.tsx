@@ -408,7 +408,7 @@ export default function Lottery({ history }: RouteComponentProps) {
       <LightGreyCard2 height="auto">
         <ButtonDropdownLight padding={1} onClick={handleShowLotteryList}>
           <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
-            <Trans>{selectedLotteryDesc}</Trans>
+            <TextValue>{selectedLotteryDesc}</TextValue>
           </Text>
         </ButtonDropdownLight>
         </LightGreyCard2>
