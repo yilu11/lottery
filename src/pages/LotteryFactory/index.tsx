@@ -139,6 +139,10 @@ const MainContentWrapper = styled.main`
 
 export default function LotteryFactory({ history }: RouteComponentProps) {
   const { account, chainId } = useActiveWeb3React()
+  const [manager, setManager] = useState(account || "")
+  if(account && !manager){
+    setManager(account)
+  }
   const loadedUrlParams = useDefaultsFromURLSearch()
   const toggleWalletModal = useWalletModalToggle()
   const showConnectAWallet = Boolean(!account)
@@ -155,7 +159,6 @@ export default function LotteryFactory({ history }: RouteComponentProps) {
   const decimals = 18
   const [startTime, setStartTime] = useState("")
   const [stopTime, setStopTime] = useState("")
-  const [manager, setManager] = useState(account ?? "")
   const token1 = chainId && coinAddress ? new Token(chainId, coinAddress, decimals, symbol, coinName) : undefined;
   const [isOpen, setOpen] = useState(false)
 

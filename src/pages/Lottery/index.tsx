@@ -115,6 +115,19 @@ const LightGreyCard2 = styled(LightGreyCard)`
   }
 `
 
+
+const LightGreyCard4 = styled(LightGreyCard)`
+  flex: 3;
+  padding: 8px 12px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  @media only screen and (min-width: 600pt) {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  text-align: center;
+`
+
 const LightGreyCard3 = styled(LightGreyCard)`
   flex: 3;
   padding: 8px 12px;
@@ -404,6 +417,7 @@ export default function Lottery({ history }: RouteComponentProps) {
   },[])
   return (
     <>
+    <Card2><p style={{padding: "18px 12px", margin:"20px", textAlign:"center", width: "100%"}}>Instructions for use</p></Card2>
       <Card2>
       <LightGreyCard2 height="auto">
         <ButtonDropdownLight padding={1} onClick={handleShowLotteryList}>
@@ -532,7 +546,7 @@ export default function Lottery({ history }: RouteComponentProps) {
                 </AppBody>
                 <ButtonPrimary disabled={!account || approvalState != ApprovalState.APPROVED || lotteryStateDesc != "Running"} marginTop={30} onClick={handleParticipate}>
                   <ThemedText.Label mb="4px">
-                    <Trans>{depositedAmount?.greaterThan(0) ? "Add" : ""} Deposit</Trans>
+                    <span>{depositedAmount?.greaterThan(0) ? "Add" : ""} Deposit</span>
                   </ThemedText.Label>
                 </ButtonPrimary>
               </>
@@ -559,7 +573,7 @@ export default function Lottery({ history }: RouteComponentProps) {
                       {!(a.entryTime && a.entryTime > 0) ? "" : a.address}
                     </ThemedText.Main>
                     <ThemedText.Main ml="6px" fontSize="8pt" color={theme.text1}>
-                      <Trans>{dateTimeDesc(a.entryTime)}</Trans>
+                      <TextValue>{dateTimeDesc(a.entryTime)}</TextValue>
                     </ThemedText.Main>
                   </FullRow>
                 </RowBetween>
@@ -590,7 +604,7 @@ export default function Lottery({ history }: RouteComponentProps) {
                         </span>
                       </ThemedText.Main>
                       <ThemedText.Main ml="6px" fontSize="12px" color={theme.text1}>
-                        <Trans>{!(a.createTime && a.createTime > 0) ? "" : new Date(a.createTime * 1000).toLocaleString()}</Trans>
+                        <span>{!(a.createTime && a.createTime > 0) ? "" : new Date(a.createTime * 1000).toLocaleString()}</span>
                       </ThemedText.Main>
                     </FullRow>
                   </RowBetween>
