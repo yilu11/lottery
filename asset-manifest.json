@@ -3,8 +3,8 @@
     "static/js/0.3b51b894.chunk.js": "./static/js/0.3b51b894.chunk.js",
     "static/js/0.3b51b894.chunk.js.map": "./static/js/0.3b51b894.chunk.js.map",
     "main.css": "./static/css/main.9c920448.chunk.css",
-    "main.js": "./static/js/main.e943b563.chunk.js",
-    "main.js.map": "./static/js/main.e943b563.chunk.js.map",
+    "main.js": "./static/js/main.9a9e9de1.chunk.js",
+    "main.js.map": "./static/js/main.9a9e9de1.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.663c2306.js",
     "runtime-main.js.map": "./static/js/runtime-main.663c2306.js.map",
     "static/css/3.83e03661.chunk.css": "./static/css/3.83e03661.chunk.css",
@@ -108,7 +108,7 @@
     "static/media/blue-loader.svg": "./static/media/blue-loader.249140da.svg",
     "static/media/coinbaseWalletIcon.a3a7d7fd.svg": "./static/media/coinbaseWalletIcon.a3a7d7fd.svg",
     "static/media/dropdown.fef18eeb.svg": "./static/media/dropdown.fef18eeb.svg",
-    "static/media/logo.cca55b15.svg": "./static/media/logo.cca55b15.svg",
+    "static/media/logo.f29638fb.svg": "./static/media/logo.f29638fb.svg",
     "static/media/matic-token-icon.da7b877d.svg": "./static/media/matic-token-icon.da7b877d.svg",
     "static/media/menu.79681e1f.svg": "./static/media/menu.79681e1f.svg",
     "static/media/metamask.02e3ec27.png": "./static/media/metamask.02e3ec27.png",
@@ -126,6 +126,6 @@
     "static/css/3.83e03661.chunk.css",
     "static/js/3.7661d796.chunk.js",
     "static/css/main.9c920448.chunk.css",
-    "static/js/main.e943b563.chunk.js"
+    "static/js/main.9a9e9de1.chunk.js"
   ]
 }
