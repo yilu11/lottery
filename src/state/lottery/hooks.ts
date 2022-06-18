@@ -5,7 +5,7 @@ import { useEffect, useMemo } from 'react'
 import { Currency, CurrencyAmount, Token } from '@uniswap/sdk-core'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import { useMultipleContractSingleData, useSingleContractMultipleData, useSingleCallResult, useSingleContractWithCallData, CallStateResult } from 'lib/hooks/multicall'
-import { useInterfaceMulticall, useLotteryContract } from 'hooks/useContract'
+import { useInterfaceMulticall, useLotteryContract, useTokenContract } from 'hooks/useContract'
 import JSBI from 'jsbi'
 import { ArgentWalletDetector, EnsPublicResolver, EnsRegistrar, Erc20, Erc721, Erc1155, Weth, Lottery, Lottery__factory, LotteryFactory } from 'abis/types'
 import { number } from '@lingui/core/cjs/formats'
@@ -188,7 +188,11 @@ export function useLotteryDetailInfo(
     const nameResult = useSingleCallResult(lotterycontract, 'name', [])
     const lengthResult = useSingleCallResult(lotterycontract, 'getPlayersCount', [])
     const minAmountResult = useSingleCallResult(lotterycontract, 'minAmount', [])
-    const prizeResult = useSingleCallResult(lotterycontract, 'prize', [])
+    //const prizeResult = useSingleCallResult(lotterycontract, 'prize', [])
+    const coinContract = useTokenContract(token?.address, true)
+    const prizeResult = useSingleCallResult(coinContract, 'balanceOf', [
+        lotterycontract?.address ?? undefined,
+      ])
     const managerResult = useSingleCallResult(lotterycontract, 'manager', [])
     const winnerResult = useSingleCallResult(lotterycontract, 'winner', [])
     const startTimeResult = useSingleCallResult(lotterycontract, 'startTime', [])

@@ -20,7 +20,7 @@ import { TradeState } from 'state/routing/types'
 import styled, { ThemeContext } from 'styled-components/macro'
 
 import AddressInputPanel from '../../components/AddressInputPanel'
-import { ButtonConfirmed, ButtonDropdownLight, ButtonError, ButtonLight, ButtonPrimary } from '../../components/Button'
+import { ButtonConfirmed, ButtonDropdownLight, ButtonError, ButtonLight, ButtonOutlined, ButtonPrimary } from '../../components/Button'
 import { GreyCard, LightCard } from '../../components/Card'
 import { AutoColumn } from '../../components/Column'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -75,6 +75,7 @@ import Toast from 'components/Toast'
 import { LoadingDataView } from 'components/ModalViews'
 import { useLotteryCount, useLotteryRangeInfo,useLastActiveLottery } from 'state/lotteryFactory/hooks'
 import Modal from 'components/Modal'
+import Copy from 'components/AccountDetails/Copy'
 
 
 const AlertWrapper = styled.div`
@@ -143,10 +144,21 @@ const LightCard2 = styled(LightCard)`
   flex-direction: column;
   margin: 2pt;
 `
+const LightCard3 = styled(LightCard)`
+  margin: 2pt;
+`
 
 const TextTitle = styled(Text)`
   font-size: 8pt;
   text-align: center;
+`
+
+const TextTitleBigger = styled(TextTitle)`
+  font-size: 18pt;
+  text-align: center;
+  font-weight: 600;
+  display: block;
+  vertical-align: bottom;
 `
 const TextValue = styled(Text)`
   flex: 1;
@@ -160,6 +172,22 @@ const TextValue = styled(Text)`
     font-size: 12pt;
     min-height: 14pt;
     margin: 4pt !important;
+  }
+`
+const TextValueBigger = styled(Text)`
+  vertical-align: top;
+  font-weight: 600;
+  display: block;
+  text-align: center;
+  @media only screen and (min-height: 600pt) {
+    font-size: 15pt;0
+    min-height: 15pt;
+    margin-top: 6pt !important;
+  }
+  @media only screen and (max-height: 600pt) {
+    font-size: 12pt;
+    min-height: 14pt;
+    margin: 0pt !important;
   }
 `
 const TextValue2 = styled(TextValue)`
@@ -195,7 +223,6 @@ export default function Lottery({ history }: RouteComponentProps) {
   const lotteryFactoryContract = useLotteryFactoryContract(lotteryFactoryAddress, true)
   const lotteryPageSize = 10;
   const [curLotteryPage, setCurLotteryPage] = useState(1)
-  
   const lotteryCount = useLotteryCount(lotteryFactoryContract)
   if(lotteryCount){
     //setCurLotteryPage(Math.floor(lotteryCount/lotteryPageSize) + 1)
@@ -369,6 +396,9 @@ export default function Lottery({ history }: RouteComponentProps) {
     if (lotteryDetail?.winner && lotteryDetail.winner != "0x0000000000000000000000000000000000000000") {
       return lotteryDetail?.winner
     }
+    else if(lotteryDetail?.state && lotteryDetail?.state == LotteryState.Finish){
+      return "No Winner"
+    }
     return "Not yet drawn"
 
   }, [lotteryDetail?.winner])
@@ -393,7 +423,7 @@ export default function Lottery({ history }: RouteComponentProps) {
     if (!currency) {
       return ""
     }
-    return currency.toExact() + " " + currency.currency.symbol
+    return currency.toFixed(0, { groupSeparator: ',' }) + " " + currency.currency.symbol
   }
   const [loading, setLoading] = useState(true)
   function wrappedOndismiss() {
@@ -420,11 +450,18 @@ export default function Lottery({ history }: RouteComponentProps) {
     <Card2><p style={{padding: "18px 12px", margin:"20px", textAlign:"center", width: "100%"}}>Instructions for use</p></Card2>
       <Card2>
       <LightGreyCard2 height="auto">
-        <ButtonDropdownLight padding={1} onClick={handleShowLotteryList}>
+        <ButtonDropdownLight style={{width:"auto;"}} padding={1} onClick={handleShowLotteryList}>
           <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
-            <TextValue>{selectedLotteryDesc}</TextValue>
+            <TextValue>{selectedLotteryDesc}{
+          selectedLottery && selectedLottery.length > 0 && <Copy toCopy={selectedLottery} style={{display: "inline-block", marginLeft:"22px"}}>
+                            <span style={{ marginLeft: '3px', display: "inline-block" }}>
+                              <Trans>Copy Address</Trans>
+                            </span>
+                          </Copy>
+        }</TextValue>
           </Text>
-        </ButtonDropdownLight>
+        </ButtonDropdownLight> 
+        
         </LightGreyCard2>
       </Card2>
       <Card2>
@@ -459,10 +496,10 @@ export default function Lottery({ history }: RouteComponentProps) {
                 <TextTitle>Player Count</TextTitle>
                 <TextValue>{loadingLottery ? <LoadingDataView /> : lotteryDetail?.playerCount}</TextValue>
               </LightCard2>
-              <LightCard2 flex="1">
-                <TextTitle>Current Prize</TextTitle>
-                <TextValue>{loadingLottery ? <LoadingDataView /> : currencyInfo(lotteryDetail?.prize)}</TextValue>
-              </LightCard2>
+              <LightCard3 flex="1"  style={{backgroundColor:theme.darkMode? "rgb(74,230,200)": "rgb(74,230,200)", color: "rgb(200,84,213)", verticalAlign:"middle" }}>
+                <TextTitleBigger>Current Pool Amount</TextTitleBigger>
+                <TextValueBigger>{loadingLottery ? <LoadingDataView /> : currencyInfo(lotteryDetail?.prize)}</TextValueBigger>
+              </LightCard3>
             </FullRow>
           </RowBetween2>
           {
@@ -493,7 +530,7 @@ export default function Lottery({ history }: RouteComponentProps) {
               <Trans>Connect a wallet</Trans>
             </ButtonPrimary>
           )}
-          {!showConnectAWallet && lotteryDetail?.state == LotteryState.WaitLucyDraw && (
+          {!showConnectAWallet && (lotteryDetail?.manager === account) && (!!lotteryDetail?.playerCount) && (lotteryDetail.playerCount > 0) && (lotteryDetail.state != LotteryState.Finish) &&(
             <>
               <ButtonPrimary marginTop={3} marginBottom={3} onClick={handleLucyDraw}>
                 <ThemedText.Label mb="4px">
@@ -503,7 +540,7 @@ export default function Lottery({ history }: RouteComponentProps) {
             </>
           )
           }
-          {!showConnectAWallet && approvalState != ApprovalState.APPROVED && lotteryDetail?.state == LotteryState.Running && (
+          {!showConnectAWallet && (lotteryDetail?.manager !== account) && (approvalState != ApprovalState.APPROVED) && (lotteryDetail?.state == LotteryState.Running) && (
             <>
               <RowBetween marginTop={50}>
                 <FullRow>
@@ -521,7 +558,7 @@ export default function Lottery({ history }: RouteComponentProps) {
           )
           }
           {
-            !showConnectAWallet && approvalState == ApprovalState.APPROVED && lotteryDetail?.state == LotteryState.Running && (
+            !showConnectAWallet && (lotteryDetail?.manager !== account) && approvalState == ApprovalState.APPROVED && lotteryDetail?.state == LotteryState.Running && (
               <>
                 <AppBody>
                   <Wrapper id="swap-page">
@@ -573,7 +610,7 @@ export default function Lottery({ history }: RouteComponentProps) {
                       {!(a.entryTime && a.entryTime > 0) ? "" : a.address}
                     </ThemedText.Main>
                     <ThemedText.Main ml="6px" fontSize="8pt" color={theme.text1}>
-                      <TextValue>{dateTimeDesc(a.entryTime)}</TextValue>
+                      <span>{dateTimeDesc(a.entryTime)}</span>
                     </ThemedText.Main>
                   </FullRow>
                 </RowBetween>

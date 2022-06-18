@@ -57,7 +57,7 @@ import { warningSeverity } from '../../utils/prices'
 import { supportedChainId } from '../../utils/supportedChainId'
 import AppBody from '../AppBody'
 import { useBytes32TokenContract, useTokenContract, useLotteryContract, useLotteryFactoryContract } from 'hooks/useContract'
-import { LOTTERY_ADDRESS, LOTTERY_TOKEN_ADDRESS, LOTTERY_FACTORY_ADDRESS } from 'constants/addresses'
+import { LOTTERY_TOKEN_ADDRESS, LOTTERY_FACTORY_ADDRESS } from 'constants/addresses'
 import { useSingleCallResult } from 'lib/hooks/multicall'
 import { am } from 'make-plural'
 import { ProposalEditor } from '../CreateProposal/ProposalEditor'
@@ -236,7 +236,9 @@ export default function LotteryFactory({ history }: RouteComponentProps) {
     }
     let ok = true
     await lotteryFactoryContract?.createLottery(name, manager, token1?.address ?? "", amount, startTimestamp, stopTimeStamp).catch((err) => {
-      setErrorMsg(err.data.message)
+      if(err && err.data){
+        setErrorMsg(err.data.message)
+      }
       ok = false
     }).finally(() => {
       if (ok) {

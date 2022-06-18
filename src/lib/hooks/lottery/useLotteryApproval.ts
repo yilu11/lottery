@@ -2,7 +2,7 @@ import { Protocol, Trade } from '@uniswap/router-sdk'
 import { Currency, CurrencyAmount, Percent, Token, TradeType } from '@uniswap/sdk-core'
 import { Pair, Route as V2Route, Trade as V2Trade } from '@uniswap/v2-sdk'
 import { Pool, Route as V3Route, Trade as V3Trade } from '@uniswap/v3-sdk'
-import { LOTTERY_FACTORY_ADDRESS,LOTTERY_ADDRESS, SWAP_ROUTER_ADDRESSES, V2_ROUTER_ADDRESS, V3_ROUTER_ADDRESS } from 'constants/addresses'
+import { LOTTERY_FACTORY_ADDRESS, SWAP_ROUTER_ADDRESSES, V2_ROUTER_ADDRESS, V3_ROUTER_ADDRESS } from 'constants/addresses'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useMemo } from 'react'
 import { getTxOptimizedSwapRouter, SwapRouterVersion } from 'utils/getTxOptimizedSwapRouter'
@@ -65,27 +65,27 @@ export function useLotteryFactoryAddress() {
     [chainId]
   )
 }
-export function useLotteryAddress() {
-  const { chainId } = useActiveWeb3React()
-  return useMemo(
-    () =>
-      chainId
-        ? 
-        LOTTERY_ADDRESS[chainId]
-        : undefined,
-    [chainId]
-  )
-}
-// wraps useApproveCallback in the context of a swap
-export default function useLotteryApproval(
-  useIsPendingApproval: (token?: Token, spender?: string) => boolean,
-  amount?: CurrencyAmount<Currency> // defaults to trade.maximumAmountIn(allowedSlippage)
-) {
-  const amountToApprove = amount
-  const spender = useLotteryAddress()
-  const approval = useApproval(amountToApprove, spender, useIsPendingApproval)
-  return approval
-}
+// export function useLotteryAddress() {
+//   const { chainId } = useActiveWeb3React()
+//   return useMemo(
+//     () =>
+//       chainId
+//         ? 
+//         LOTTERY_ADDRESS[chainId]
+//         : undefined,
+//     [chainId]
+//   )
+// }
+// // wraps useApproveCallback in the context of a swap
+// export default function useLotteryApproval(
+//   useIsPendingApproval: (token?: Token, spender?: string) => boolean,
+//   amount?: CurrencyAmount<Currency> // defaults to trade.maximumAmountIn(allowedSlippage)
+// ) {
+//   const amountToApprove = amount
+//   const spender = useLotteryAddress()
+//   const approval = useApproval(amountToApprove, spender, useIsPendingApproval)
+//   return approval
+// }
 
 export function useSwapApprovalOptimizedTrade(
   trade: Trade<Currency, Currency, TradeType> | undefined,

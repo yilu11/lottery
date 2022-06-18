@@ -33,26 +33,27 @@ export type CopyHelperProps = BaseProps & Omit<React.ButtonHTMLAttributes<HTMLBu
 
 export default function CopyHelper({ color, toCopy, children }: CopyHelperProps) {
   const [isCopied, setCopied] = useCopyClipboard()
-  const copy = useCallback(() => {
+  const copy = useCallback((e) => {
+    e.stopPropagation();
     setCopied(toCopy)
   }, [toCopy, setCopied])
 
   return (
-    <CopyIcon onClick={copy} color={color}>
-      {isCopied ? '' : children}
+    <CopyIcon style={{display: "inline-block"}} onClick={copy} color={color}>
       &nbsp;
       {isCopied ? (
-        <TransactionStatusText>
+        <TransactionStatusText style={{display: "inline-block"}} >
           <CheckCircle size={'12'} />
-          <TransactionStatusText>
+          <TransactionStatusText  style={{display: "inline-block"}}>
             <Trans>Copied</Trans>
           </TransactionStatusText>
         </TransactionStatusText>
       ) : (
-        <TransactionStatusText>
+        <TransactionStatusText style={{display: "inline-block"}} >
           <Copy size={'12'} />
         </TransactionStatusText>
       )}
+      {isCopied ? '' : children}
     </CopyIcon>
   )
 }

@@ -264,6 +264,12 @@ export default function Menu() {
                       <div>{darkMode ? <Trans>Light Theme</Trans> : <Trans>Dark Theme</Trans>}</div>
                       {darkMode ? <Moon opacity={0.6} size={16} /> : <Sun opacity={0.6} size={16} />}
                     </ToggleMenuItem>
+                    <ToggleMenuItem>
+                    <div>
+                        <span>1.0.6</span>
+                      </div>
+                      <Info opacity={0.6} size={16} />
+                    </ToggleMenuItem>
                     {/* <ToggleMenuItem onClick={() => togglePrivacyPolicy()}>
                       <div>
                         <Trans>Legal & Privacy</Trans>
