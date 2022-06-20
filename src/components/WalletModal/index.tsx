@@ -1,6 +1,5 @@
 import { Trans } from '@lingui/macro'
 import { AutoColumn } from 'components/Column'
-import { PrivacyPolicy } from 'components/PrivacyPolicy'
 import Row, { AutoRow } from 'components/Row'
 import { useCallback, useEffect, useState } from 'react'
 import { ArrowLeft } from 'react-feather'
@@ -350,7 +349,6 @@ export default function WalletModal({
               </ThemedText.MediumHeader>
             </Row>
           </HeaderRow>
-          <PrivacyPolicy />
         </UpperSection>
       )
     }

@@ -1,6 +1,5 @@
 // eslint-disable-next-line no-restricted-imports
 import { t, Trans } from '@lingui/macro'
-import { PrivacyPolicyModal } from 'components/PrivacyPolicy'
 import { L2_CHAIN_IDS } from 'constants/chains'
 import { LOCALE_LABEL, SUPPORTED_LOCALES, SupportedLocale } from 'constants/locales'
 import { useActiveLocale } from 'hooks/useActiveLocale'
@@ -281,7 +280,6 @@ export default function Menu() {
             }
           })()}
       </StyledMenu>
-      <PrivacyPolicyModal />
     </>
   )
 }

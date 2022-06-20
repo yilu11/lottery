@@ -8,7 +8,6 @@ import styled, { css } from 'styled-components/macro'
 
 import { ThemedText } from '../../theme'
 import { AutoColumn } from '../Column'
-import TradePrice from './TradePrice'
 
 export const Wrapper = styled.div`
   position: relative;
@@ -148,8 +147,4 @@ export const ResponsiveTooltipContainer = styled(TooltipContainer)<{ origin?: st
     transform: scale(0.8);
     transform-origin: ${origin ?? 'top left'};
   `}
-`
-
-export const StyledTradePrice = styled(TradePrice)<{ $loading: boolean }>`
-  ${loadingOpacityMixin}
 `

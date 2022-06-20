@@ -19,7 +19,6 @@ import CurrencyLogo from '../CurrencyLogo'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import { Input as NumericalInput } from '../NumericalInput'
 import { RowBetween, RowFixed } from '../Row'
-import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
 import { FiatValue } from './FiatValue'
 
 const InputPanel = styled.div<{ hideInput?: boolean }>`
@@ -250,7 +249,7 @@ export default function CurrencyInputPanel({
                     <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={24} margin={true} />
                   </span>
                 ) : currency ? (
-                  <CurrencyLogo  />
+                  <CurrencyLogo style={{ marginRight: '0.5rem' }} currency={currency} size={'24px'} />
                 ) : null}
                 {pair ? (
                   <StyledTokenName className="pair-name-container">
@@ -306,18 +305,6 @@ export default function CurrencyInputPanel({
           </FiatRow>
         )}
       </Container>
-      {onCurrencySelect && (
-        <CurrencySearchModal
-          isOpen={modalOpen}
-          onDismiss={handleDismissSearch}
-          onCurrencySelect={onCurrencySelect}
-          selectedCurrency={currency}
-          otherSelectedCurrency={otherCurrency}
-          showCommonBases={showCommonBases}
-          showCurrencyAmount={showCurrencyAmount}
-          disableNonToken={disableNonToken}
-        />
-      )}
     </InputPanel>
   )
 }

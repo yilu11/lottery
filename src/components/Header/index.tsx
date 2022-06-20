@@ -16,8 +16,6 @@ import styled from 'styled-components/macro'
 
 import { ReactComponent as Logo } from '../../assets/svg/logo.svg'
 import { ExternalLink, ThemedText } from '../../theme'
-import ClaimModal from '../claim/ClaimModal'
-import { CardNoise } from '../earn/styled'
 import Menu from '../Menu'
 import Row from '../Row'
 import { Dots } from '../swap/styleds'
@@ -269,7 +267,6 @@ export default function Header() {
 
   return (
     <HeaderFrame showBackground={scrollY > 45}>
-      <ClaimModal />
       <Title href=".">
         <UniIcon>
           <Logo fill={darkMode ? white : black} width="256px" height="100%" title="logo" />

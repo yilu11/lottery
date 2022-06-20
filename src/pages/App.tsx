@@ -12,25 +12,10 @@ import Polling from '../components/Header/Polling'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
-import AddLiquidity from './AddLiquidity'
-import { RedirectDuplicateTokenIds } from './AddLiquidity/redirects'
-import { RedirectDuplicateTokenIdsV2 } from './AddLiquidityV2/redirects'
-import Earn from './Earn'
-import Manage from './Earn/Manage'
-import MigrateV2 from './MigrateV2'
-import MigrateV2Pair from './MigrateV2/MigrateV2Pair'
-import Pool from './Pool'
-import { PositionPage } from './Pool/PositionPage'
-import PoolV2 from './Pool/v2'
-import PoolFinder from './PoolFinder'
-import RemoveLiquidity from './RemoveLiquidity'
-import RemoveLiquidityV3 from './RemoveLiquidity/V3'
-import Swap from './Swap'
 import Lottery from './Lottery'
 import LotteryFactory from './LotteryFactory'
-import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, RedirectPathToLotteryOnly, RedirectToSwap } from './Swap/redirects'
+import { RedirectPathToLotteryOnly } from './Lottery/redirects'
 
-const Vote = lazy(() => import('./Vote'))
 
 const AppWrapper = styled.div`
   display: flex;
